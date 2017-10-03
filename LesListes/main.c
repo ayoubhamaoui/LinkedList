@@ -47,6 +47,15 @@ List insertEnd(List L)
 }
 
 
+List InsertionSort(List L,int x)
+{
+    List new=(List)malloc(sizeof(Node));
+    new->data=x;
+    new->Next=L;
+    return sortList(New);
+}
+
+
 List insertBeg(List L)
 {
     List new;
@@ -100,6 +109,68 @@ List deleteBeg(List L)
     return L;
 }
 
+List DeleteAll(List L,int x)
+{
+    List p,q;
+    if(!L)
+    {
+        return 0;
+    }
+
+
+}
+
+/*List Intersection(List L,List R)
+{
+    List In=NULL,p,new;
+    //on suppose que les listes n'ont pas de doublons
+    for(p=L;p;p=p->Next)
+    {
+        if(Existe(R,p->Next)==1)
+        {
+            new=(List)malloc(sizeof(Node));
+            new->data=p->data;
+            new->Next=In;
+            In=new;
+        }
+    }
+    return In;
+}*/
+
+
+/*List Unio(List L,List R)
+{
+    List new=concatener(L,R);
+    return Purger(L);
+}*/
+
+
+
+List concatener(List L,List R)
+{
+   List p,q;
+   if(L==NULL || R==NULL)
+   {
+       return R;
+   }
+
+   for(p=L;p->Next!=NULL;p=p->Next);
+   p->Next=R;
+   return L;
+}
+
+int Exist(List L,int x)//return 1 if x exist
+{
+    List p;
+    for(p=L;p && p->data != x;p=p->Next);
+    if(!p)
+    {
+        return 0;
+    }else{
+        return 1;
+    }
+}
+
 
 
 List addAfter(List L)
@@ -124,25 +195,52 @@ List addAfter(List L)
     }
 }
 
+List sortList(List L)//insertion Sort
+{
+    List p,q;
+    int temp;
+    for(p=L;p->Next!=NULL;p=p->Next)
+    {
+        for(q=p->Next;q!=NULL;q=q->Next)
+        {
+            if(p->data>q->data)
+            {
+                temp=p->data;
+                p->data=q->data;
+                q->data=temp;
+            }
+        }
+    }
+    return L;
+}
+
 
 int main()
 {
-   List GINF=NULL;
+   List Entier=NULL;
+   List entie=NULL;
 
-   GINF=insertEnd(GINF);
-   GINF=insertEnd(GINF);
-   GINF=insertBeg(GINF);
-   printf("\n\n");
-   puts("THE LIST:\n");
-   showList(GINF);
-   printf("\n\n");
+   entie=insertEnd(entie);
+   entie=insertEnd(entie);
+   entie=insertBeg(entie);
+   entie=insertBeg(entie);
+   entie=insertBeg(entie);
+   printf("First list:\n");
+   showList(entie);
+
+printf("\n\n");
+   /*Entiers=insertEnd(Entiers);
+   Entiers=insertEnd(Entiers);
+   Entiers=insertBeg(Entiers);
+   printf("seconde List:");showList(entie);*/
 
 
-   puts("THE LIST after adding:\n");
-   GINF=addAfter(GINF);
+
+   entie=sortList(entie);
+   puts("LIST:  ::::::");
+   showList(entie);
    printf("\n\n");
-   showList(GINF);
-   printf("\n\n");
+
 
 }
 
