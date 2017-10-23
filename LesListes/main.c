@@ -19,7 +19,6 @@ List CreatList()
     return new;
 }
 
-
 void showList(List L)
 {
     List p;
@@ -28,7 +27,6 @@ void showList(List L)
         printf("%d  ",p->data);
     }
 }
-
 
 List insertEnd(List L)
 {
@@ -44,15 +42,6 @@ List insertEnd(List L)
     for(p=L;p->Next!=NULL;p=p->Next);
     p->Next=new;
     return L;
-}
-
-
-List InsertionSort(List L,int x)
-{
-    List new=(List)malloc(sizeof(Node));
-    new->data=x;
-    new->Next=L;
-    return sortList(New);
 }
 
 
@@ -145,7 +134,6 @@ List DeleteAll(List L,int x)
 }*/
 
 
-
 List concatener(List L,List R)
 {
    List p,q;
@@ -158,6 +146,7 @@ List concatener(List L,List R)
    p->Next=R;
    return L;
 }
+
 
 int Exist(List L,int x)//return 1 if x exist
 {
@@ -172,8 +161,7 @@ int Exist(List L,int x)//return 1 if x exist
 }
 
 
-
-List addAfter(List L)
+List AddAfter(List L)
 {
     List new,p;
     int x;
@@ -195,6 +183,7 @@ List addAfter(List L)
     }
 }
 
+
 List sortList(List L)//insertion Sort
 {
     List p,q;
@@ -215,6 +204,52 @@ List sortList(List L)//insertion Sort
 }
 
 
+List InsertionSort(List L,int x)
+{
+    List new=(List)malloc(sizeof(Node));
+    new->data=x;
+    new->Next=L;
+    return sortList(new);
+}
+
+
+List InversList(List L)
+{
+    List p,q,r;
+    if(!L || !L->Next)
+    {
+        return L;
+    }
+    //list had two variables
+    p=L;
+    q=p->Next;
+    r=q->Next;
+    p->Next=NULL;
+    q->Next=p;
+    while(r!=NULL)
+    {
+        p=q;
+        q=r;
+        r=r->Next;
+        q->Next=p;
+    }
+    return q;
+}
+
+/*List InverserAvecRecopie(List L)
+{
+    List Linv=NULL,p;
+    for(p=L;p;p=p->Next)
+    {
+        Linv=AddBeg(Linv,p->data);
+    }
+    return Linv;
+}*/
+
+
+
+
+
 int main()
 {
    List Entier=NULL;
@@ -228,19 +263,43 @@ int main()
    printf("First list:\n");
    showList(entie);
 
-printf("\n\n");
+   printf("\n\n");
    /*Entiers=insertEnd(Entiers);
    Entiers=insertEnd(Entiers);
    Entiers=insertBeg(Entiers);
    printf("seconde List:");showList(entie);*/
-
-
-
-   entie=sortList(entie);
-   puts("LIST:  ::::::");
-   showList(entie);
-   printf("\n\n");
-
+  printf("Inverse:::\n");
+  entie=InversList(entie);
+  showList(entie);
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
